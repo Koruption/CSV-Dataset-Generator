@@ -51,3 +51,37 @@ Completed writing data to: whatever_name.csv
 '''
 
 ```
+
+### Using Json Schemas 
+``` python 
+
+table = DataTable(schema_path="schema_file_name.json")
+
+# define number of rows in table
+table.set_rows(5)
+
+# create row data 
+table.generate_rows()
+
+# display table data (uses prettytable to print)
+table.print_rows(pretty=True)
+
+# write to csv
+CSVWriter.write_to('whatever_name.csv', table)
+
+'''
+outputs: 
++-----------+---------------------+------+
+|    name   | subscription_status | rank |
++-----------+---------------------+------+
+| Marquetta |     unsubscribed    |  40  |
+|   Karen   |      subscribed     |  38  |
+|   Janine  |     unsubscribed    |  13  |
+|   Kevin   |      subscribed     |  28  |
+|  Latrina  |       unknown       |  3   |
++-----------+---------------------+------+
+
+Completed writing data to: whatever_name.csv
+'''
+
+```
