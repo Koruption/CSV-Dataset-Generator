@@ -1,0 +1,33 @@
+{
+    "columns": [
+        {
+            "name": "name",
+            "type": "name",
+            "config_params": {
+                "full_name": false
+            }
+        },
+        {
+            "name": "subscription_status",
+            "type": "categorical",
+            "config_params": {
+                "categories": [
+                    "subscribed",
+                    "unsubscribed",
+                    "unknown"
+                ]
+            }
+        },
+        {
+            "name": "rank",
+            "type": "number",
+            "config_params": {
+                "range": [
+                    0,
+                    100
+                ],
+                "use_floats": false
+            }
+        }
+    ]
+}

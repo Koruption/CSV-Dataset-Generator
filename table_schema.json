@@ -1,0 +1,46 @@
+{
+    "columns": [
+        {
+            "name": "name",
+            "type": "name",
+            "config_params": {}
+        },
+        {
+            "name": "subscription_status",
+            "type": "categorical",
+            "config_params": {
+                "categories": [
+                    "subscribed",
+                    "unsubscribed",
+                    "unknown"
+                ]
+            }
+        },
+        {
+            "name": "email",
+            "type": "email",
+            "config_params": {}
+        },
+        {
+            "name": "amount_spent",
+            "type": "currency",
+            "config_params": {
+                "symbol": "$",
+                "range": [
+                    0,
+                    100000
+                ]
+            }
+        },
+        {
+            "name": "date",
+            "type": "date",
+            "config_params": {
+                "range": [
+                    "1/1/2022 1:30 pm",
+                    "1/22/2022 1:30 pm"
+                ]
+            }
+        }
+    ]
+}
