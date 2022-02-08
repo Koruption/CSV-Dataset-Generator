@@ -1,8 +1,18 @@
 # CSV Dataset Generator
- Simple python program for quickly generating datasets and writing them to a csv
+ Simple 🐍 python program for quickly generating datasets and writing them to a csv file.
 
+#### Installing Dependencies 
+💡 Run these commands in order, assuming you have installed python from [python-download](https://www.python.org/ftp/python/3.10.2/python-3.10.2-amd64.exe)
+``` bash
 
-## Usage
+$ py -m venv venv 
+
+$ venv/scripts/activate
+
+$ pip3 install -r requirements.txt
+```
+
+#### Usage
 ``` python 
 
 table = DataTable([
@@ -22,6 +32,9 @@ table.generate_rows()
 # display table data 
 table.print_rows()
 
+# write to csv
+CSVWriter.write_to('whatever_name.csv', table)
+
 '''
 outputs: 
 ['Johnny', 'joyfulIcecream8@icloud.com', 'subscribed', '$230956.95', '01/17/2022 07:24 AM']
@@ -29,6 +42,8 @@ outputs:
 ['Matthew', 'sincereCheetah0@yahoo.com', 'subscribed', '$218325.14', '01/03/2022 10:01 PM']  
 ['Alicia', 'madDoughnut9@gmail.com', 'unsubscribed', '$106352.42', '01/05/2022 05:03 PM']    
 ['Robert', 'puzzledCardinal3@yahoo.com', 'unsubscribed', '$109170.01', '01/10/2022 04:06 PM']
+
+Completed writing data to: whatever_name.csv
 '''
 
 ```

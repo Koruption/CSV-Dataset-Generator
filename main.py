@@ -337,7 +337,7 @@ class CSVWriter:
            #fwriter.writerows(table.rows)
            for row in table.rows:
                fwriter.writerow(row)
-           print(f'Completed writing data to: ${file_name}')
+           print(f'Completed writing data to: ${file_name}.csv')
            return
     
 def main():
