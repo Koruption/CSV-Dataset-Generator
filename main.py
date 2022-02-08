@@ -280,14 +280,20 @@ class DataTable:
                 self.add_col(col)
         self.row_count: int = row_count
         self.rows: List[List[Any]] = []
+        self.__set_headers()
         return 
+    
+    def __set_headers(self):
+        self.headers = [col.name for col in self.cols]
     
     def add_col(self, column: Column):
         self.cols.append(column)
+        self.__set_headers()
         return
     
     def del_col(self, name: str):
         self.cols = list(filter(lambda col: col.name != name, self.cols))
+        self.__set_headers()
         return 
     
     def set_rows(self, row_count: int):
@@ -326,34 +332,44 @@ class CSVWriter:
                quotechar='|', 
                quoting=csv.QUOTE_MINIMAL
                )
+           # write the column header first 
+           fwriter.writerow(table.headers)
            #fwriter.writerows(table.rows)
            for row in table.rows:
-               print(row)
                fwriter.writerow(row)
            print(f'Completed writing data to: ${file_name}')
            return
     
 def main():
     # users = UserGenerator().generate(full_names=True, amount=5).getData()
+    # table = DataTable([
+    #     Column('name', NameGenerator(full_name=False, from_list=NameGenerator(25, True).generate().getData())),
+    #     Column('id', IDGenerator()),
+    #     Column('email', EmailGenerator()),
+    #     Column('address', AddressGenerator(with_zips=False)),
+    #     Column('subscription_status', CategoryGenerator(['subscribed', 'unsubscribed', 'unknown'])),
+    #     Column('amount_spent', CurrencyGenerator('$')),
+    #     Column('date', DateGenerator('1/1/2022 1:30 pm', '1/22/2022 1:30 pm')),
+    # ])
     table = DataTable([
-        Column('name', NameGenerator(full_name=False, from_list=NameGenerator(25, True).generate().getData())),
-        Column('id', IDGenerator()),
-        Column('email', EmailGenerator()),
-        Column('address', AddressGenerator(with_zips=False)),
-        Column('subscription_status', CategoryGenerator(['subscribed', 'unsubscribed', 'unknown'])),
-        Column('amount_spent', CurrencyGenerator('$')),
-        Column('date', DateGenerator('1/1/2022 1:30 pm', '1/22/2022 1:30 pm')),
+        Column('age', NumberGenerator(num_range=(13,85))),
+        Column('income', CurrencyGenerator('$', amount_range=(0,250000))),
+        Column('product_line', CategoryGenerator(['office_suite'])),
+        Column('prev_purchase', CategoryGenerator(['yes', 'no'])),
+        Column('region', CategoryGenerator(['northeast', 'midwest', 'south', 'west'])),
+        Column('tos(m)', NumberGenerator(num_range=(1,500))),
+        Column('day', CategoryGenerator(['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun']))
     ])
     
     # defines the number or rows (data points) you'd like
-    table.set_rows(10)
+    table.set_rows(1000)
     # fills the table's the row/coumn data
     table.generate_rows()
     # display the table data in the console
     # table.print_rows()
     
     # write table to csv - change name to write to different file
-    CSVWriter.write_to('test.csv', table)
+    CSVWriter.write_to('msft_gen_data.csv', table)
     return 
 
 main()
