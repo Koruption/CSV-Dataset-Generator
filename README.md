@@ -29,19 +29,23 @@ table.set_rows(5)
 # create row data 
 table.generate_rows()
 
-# display table data 
-table.print_rows()
+# display table data (uses prettytable to print)
+table.print_rows(pretty=True)
 
 # write to csv
 CSVWriter.write_to('whatever_name.csv', table)
 
 '''
 outputs: 
-['Johnny', 'joyfulIcecream8@icloud.com', 'subscribed', '$230956.95', '01/17/2022 07:24 AM']
-['Sandra', 'relievedWasp8@outlook.com', 'unknown', '$140249.2', '01/04/2022 08:23 AM']       
-['Matthew', 'sincereCheetah0@yahoo.com', 'subscribed', '$218325.14', '01/03/2022 10:01 PM']  
-['Alicia', 'madDoughnut9@gmail.com', 'unsubscribed', '$106352.42', '01/05/2022 05:03 PM']    
-['Robert', 'puzzledCardinal3@yahoo.com', 'unsubscribed', '$109170.01', '01/10/2022 04:06 PM']
++----------+-----------------------------+---------------------+--------------+---------------------+
+|   name   |            email            | subscription_status | amount_spent |         date        |
++----------+-----------------------------+---------------------+--------------+---------------------+
+| Michael  |    pluckyJerky6@yahoo.com   |       unknown       |  $76854.89   | 01/22/2022 06:40 AM |
+| Benjamin |  humorousJerky7@outlook.com |     unsubscribed    |  $120075.98  | 01/16/2022 07:05 PM |
+| Patrick  |    zestyOwl9@outlook.com    |     unsubscribed    |  $246514.66  | 01/19/2022 06:26 AM |
+|   Ana    | finickyTortoise2@icloud.com |     unsubscribed    |  $138574.19  | 01/12/2022 05:09 PM |
+|  Ronald  |   bubblySeafowl9@gmail.com  |      subscribed     |  $60869.17   | 01/12/2022 10:07 AM |
++----------+-----------------------------+---------------------+--------------+---------------------+
 
 Completed writing data to: whatever_name.csv
 '''

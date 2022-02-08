@@ -1,6 +1,7 @@
 from random_username.generate import generate_username
 from random_address import real_random_address
 from typing import Any, List, Tuple
+from prettytable import PrettyTable
 from datetime import timedelta
 from datetime import datetime
 import random
@@ -318,9 +319,16 @@ class DataTable:
             self.rows.append(row_data)
         return 
     
-    def print_rows(self):
-        for i in range(0, self.row_count):
-            print(self.rows[i])
+    def print_rows(self, pretty=True):
+        if (not pretty):
+            print(self.headers)
+            for row in self.rows:
+                print(row)
+            return
+        p_table = PrettyTable(field_names=self.headers)
+        for row in self.rows:
+            p_table.add_row(row)
+        print(p_table)
 
 class CSVWriter:
     
@@ -334,7 +342,6 @@ class CSVWriter:
                )
            # write the column header first 
            fwriter.writerow(table.headers)
-           #fwriter.writerows(table.rows)
            for row in table.rows:
                fwriter.writerow(row)
            print(f'Completed writing data to: ${file_name}.csv')
